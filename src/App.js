@@ -10,11 +10,44 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React component lifecycle</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Randomnumber/>
       </div>
     );
+  }
+}
+
+class Randomnumber extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      r: 0
+    };
+    this.number = this.number.bind(this);
+  }
+  number(){
+    // alert('hello')
+    this.setState( {r: Math.random() })
+  }
+  render(){
+    return (
+      <p className="App-intro">
+        Click the button to generate a random number <br/>
+        <button onClick={this.number}>Click Here</button>
+        <Childnumber rnum = {Math.floor(this.state.r * 10)}/>
+      </p>
+    )
+  }
+}
+
+class Childnumber extends Component {
+  render(){
+    return(
+      <div>
+        
+        <p>{this.props.rnum} </p>
+      </div>
+    )
   }
 }
 
